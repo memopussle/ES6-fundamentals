@@ -17,23 +17,18 @@
 
 ```
 const double = function(x) {
-
   return x * 2;
-
 }
 ```
 
 ```
 const double = (x) => {
-
   return x * 2;
-
 }
 
 ```
 
 - If the body of the function is only one line of return value, we can omit the curly braces {}
-
 
 - Arrow functions do not have this value -> cannot be used as object method
 
@@ -46,11 +41,9 @@ const car = {
     }
 
 car.getSpeed();
-
 // -> undefined, Window
 
 car.getSpeed2();
-
 // -> 20, { speed: 20, getSpeed: ... }
 
 }
@@ -60,7 +53,6 @@ car.getSpeed2();
 
 ```
 const A = () => {};
-
 const b = new A(); // TypeError: A is not a constructor
 
 ```
@@ -69,9 +61,7 @@ const b = new A(); // TypeError: A is not a constructor
 
 ```
 const argumentLogger = () => {
-
   for (var i = 0; i < arguments.length; i++) {
-
     console.log(arguments[i]);
 
   }
@@ -79,6 +69,5 @@ const argumentLogger = () => {
 }
 
 argumentLogger(1, 2, 3);
-
 // -> ReferenceError: arguments is not defined
 ```
