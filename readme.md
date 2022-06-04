@@ -39,6 +39,7 @@ const car = {
     getSpeed2: function() {
         console.log(this.speed, this)
     }
+    }
 
 car.getSpeed();
 // -> undefined, Window
@@ -46,7 +47,6 @@ car.getSpeed();
 car.getSpeed2();
 // -> 20, { speed: 20, getSpeed: ... }
 
-}
 ```
 
 - Arrow functions CANNOT be used as constructors
@@ -63,11 +63,26 @@ const b = new A(); // TypeError: A is not a constructor
 const argumentLogger = () => {
   for (var i = 0; i < arguments.length; i++) {
     console.log(arguments[i]);
-
   }
-
 }
 
 argumentLogger(1, 2, 3);
 // -> ReferenceError: arguments is not defined
 ```
+
+- If we define a arguments variables in the global scope, it will be accessed in an arrow function just like any other gloabal variables
+```
+const arguments = [1, 2, 3];
+const logArgument0 = () => {
+  // arguments is referring to the arguments constant variable in the global scope
+console.log(arguments[0]);
+}
+
+logArgument0();
+// -> 1
+```
+
+### Rest parameters
+
+- group the paremters into a JS array. [...parameters]
+

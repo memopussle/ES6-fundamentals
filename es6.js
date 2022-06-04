@@ -47,3 +47,33 @@ car.getSpeed();
 car.getSpeed2();
 
 // -> 20, { speed: 20, getSpeed: ... }
+
+
+// arrow functions cannot be used as constructors.
+// const A = () => {};
+// const b = new A(); // TypeError: A is not a constructor
+
+//arrow functions do not have their own arguments object
+
+//ES5
+var argumentLogger = function () {
+  for (var i = 0; i < arguments.length; i++) {
+    console.log(arguments[i]);
+  }
+}
+
+console.log(argumentLogger(1, 2, 3));
+// -> 1
+// -> 2
+// -> 3
+
+
+// ES6
+
+const argumentLogger = () => {
+  for (var i = 0; i < arguments.length; i++) {
+    console.log(arguments[i]);
+  }
+}
+argumentLogger(1, 2, 3);
+// -> ReferenceError: arguments is not defined
