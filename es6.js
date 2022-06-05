@@ -56,13 +56,13 @@ car.getSpeed2();
 //arrow functions do not have their own arguments object
 
 //ES5
-var argumentLogger = function () {
+var argumentLogger1 = function () {
   for (var i = 0; i < arguments.length; i++) {
     console.log(arguments[i]);
   }
 }
 
-console.log(argumentLogger(1, 2, 3));
+console.log(argumentLogger1(1, 2, 3));
 // -> 1
 // -> 2
 // -> 3
@@ -70,10 +70,33 @@ console.log(argumentLogger(1, 2, 3));
 
 // ES6
 
-const argumentLogger = () => {
-  for (var i = 0; i < arguments.length; i++) {
-    console.log(arguments[i]);
-  }
-}
-argumentLogger(1, 2, 3);
+// const argumentLogger = () => {
+//   for (var i = 0; i < arguments.length; i++) {
+//     console.log(arguments[i]);
+//   }
+// }
+// argumentLogger(1, 2, 3);
 // -> ReferenceError: arguments is not defined
+
+
+// rest parameters
+// ES6 allows us to group parameters [...parameters] = [parameter1, parameter2, etc]
+
+const argumentLogger = (...params) => {
+  for (var i = 0; i < params.length; i++) {
+    console.log(params[i]);
+  }
+};
+
+argumentLogger(1, 2, 3); // -> 1
+// -> 2
+// -> 3
+
+
+//Spread operators
+const friends = ["Jane", "Mary"];
+const foes = ["Jim", "Marie"];
+
+const FriendsAndFoes = [...friends, ...foes]; // = [].concat(friends).concat(foes); join 2 arrays
+console.log(FriendsAndFoes);
+
