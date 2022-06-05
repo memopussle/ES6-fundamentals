@@ -1,7 +1,12 @@
 
 # JavaScript ES6
 
-- Write shorter JavaScript andmore efficient
+1. Write shorter JavaScript andmore efficient
+2. let, const variables replace var.
+3. Arrow functions () => {}. Arrow does not have **this** and **arguments** => not replacement of traditional function
+4. Rest parameters: group the paremters into a JS array. [...parameters]
+5. Spread Operators:  turn an array or a string into comma separated input. ie: const number = [12345] => [...number]
+
 
 ### Let, const
 
@@ -16,15 +21,9 @@
 
 
 ```
-const double = function(x) {
-  return x * 2;
-}
-```
-
-```
 const double = (x) => {
   return x * 2;
-}
+} // = function double(x) {}
 
 ```
 
@@ -111,13 +110,9 @@ restLogger(1, 2, 3, 4, 5);
 // ES5
 
 var friends = ['John', 'Mary'];
-
 var foes = ['Peter', 'Jane'];
-
 var friendsAndFoes = [].concat(friends).concat(foes);
-
 console.log(friendsAndFoes);
-
 // -> ['John', 'Mary', 'Peter', 'Jane']
 
 ``
@@ -140,4 +135,42 @@ const splitStrings = [..."abcdefg"]; // split string into individual character
 console.log(splitStrings);
 // -> ["a", "b", "c", "d", "e", "f", "g"]
 
+```
+
+---
+
+## Default parameters
+
+- In ES6, we can set default parameters of a function
+```
+const multiply = (a, b = 1) => {
+  return a * b;
+}
+multiply(2); //-> 2 
+```
+
+## Enhanced object
+ 
+- In ES6, property is shorter by assigning key value pairs from variables
+
+```
+// ES6
+
+const name = 'Peter';
+const age = 20;
+const student = { name, age };
+console.log(student);
+// -> { name: 'Peter', age: 20 }
+```
+
+- ES6 is able to assign computed property keey name during the object definition
+
+```
+let count = 1;
+const inventory = {
+  [count++] : "Apples",
+  [count++] : "Oranges"
+}
+console.log(inventory);
+// -> { 1: "Apples", 2: "Oranges" }
 ```
