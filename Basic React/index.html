@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <title>A React by CDN</title>
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <script
+      src="https://unpkg.com/react@16/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <div id="root2"></div>
+
+     <div id="root3"></div>
+
+    <!-- Retrieve data from DOM -->
+    <div>
+      <p>Message 1</p>
+      <span class="button" data-message-id="1"></span>
+    </div>
+
+    <div>
+      <p>Message 2</p>
+      <span class="button" data-message-id="2"></span>
+    </div>
+
+    <div>
+      <p>Message 3</p>
+      <span class="button" data-message-id="3"></span>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
