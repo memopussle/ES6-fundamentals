@@ -168,4 +168,4 @@ tom.changeAge(21);
 console.log(tom.age);
 // -> 21
 ```
-![constructors](img/constructors.png)
+![constructors](../img/constructors.png)
