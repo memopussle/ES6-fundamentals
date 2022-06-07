@@ -117,3 +117,55 @@ const add = (total, value) => {
   total += value;
 }; //example of impure function
 ```
+
+## Adding State to a component
+
+- To update current time, we can use date method or setInterval
+
+- But there is better way to do this: ES6 Class
+
+### Class
+
+- The language's attempt to make JS more similar to traditional OOP (object Oriented Programming)
+- ES6 class is another way to write JS prototype based Object Constructors
+- Object Constructor: an object wrapper for the given value.
+   
+     ES6                                             
+    
+```                                                     
+class Person {                                        
+  constructor(name,age) {                            
+    this.name = name;                                 
+    this.age =age;
+  }
+
+  // methods syntax
+  changeAge (age) {
+    this.age = age;
+  }
+}
+
+const tom = new Person('Tom', 20);
+tom.changeAge(21);
+console.log(tom.age);
+// -> 21
+
+```
+
+ES5
+```
+var Person = function (name, age) {
+  this.name = name;
+  this.age = age;
+};
+
+Person.prototype.changeAge = function (age) {
+  this.age = age;
+}
+
+const tom = new Person('Tom', 20);
+tom.changeAge(21);
+console.log(tom.age);
+// -> 21
+```
+![constructors](./img/constructors.png)

@@ -91,3 +91,41 @@ var Temperature = function Temperature(props) {
 var elementRender = React.createElement(Temperature, { degree: 25, unit: "celsius" }); //<Temperature is a custom component
 
 ReactDOM.render(elementRender, document.getElementById("root3"));
+
+// Adding state in a Rect component
+//toLocaleString: retrieve the local time of the computer in a human readable format
+var Clock1 = function Clock1(props) {
+  return React.createElement(
+    "div",
+    null,
+    React.createElement(
+      "h2",
+      null,
+      "The time is ",
+      props.date.toLocaleString(),
+      "."
+    )
+  );
+};
+
+//passing new Date() object to data attributes
+ReactDOM.render(React.createElement(Clock1, { date: new Date() }), document.getElementById("root3"));
+
+//adding time by setInterval
+var Clock2 = function Clock2(props) {
+  return React.createElement(
+    "div",
+    null,
+    React.createElement(
+      "h2",
+      null,
+      "The time is ",
+      props.date.toLocaleString(),
+      "."
+    )
+  );
+};
+
+window.setInterval(function () {
+  ReactDOM.render(React.createElement(Clock2, { date: new Date() }), document.getElementById("root"));
+}, 1000);

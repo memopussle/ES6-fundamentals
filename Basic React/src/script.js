@@ -96,3 +96,37 @@ ReactDOM.render(
 
   document.getElementById("root3")
 );
+
+
+// Adding state in a Rect component
+//toLocaleString: retrieve the local time of the computer in a human readable format
+const Clock1 = (props) => {
+  return (
+    <div>
+      <h2>The time is {props.date.toLocaleString()}.</h2>
+    </div>
+  )
+}
+
+//passing new Date() object to data attributes
+ReactDOM.render(
+  <Clock1 date={new Date()} />,
+
+  document.getElementById("root3")
+);
+
+//adding time by setInterval
+const Clock2 = (props) => {
+  return (
+    <div>
+      <h2>The time is {props.date.toLocaleString()}.</h2>
+    </div>
+  );
+}
+
+window.setInterval(() => {
+  ReactDOM.render(
+    <Clock2 date={new Date()} />,
+    document.getElementById("root")
+  );
+}, 1000);
