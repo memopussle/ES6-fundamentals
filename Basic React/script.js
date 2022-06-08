@@ -1,3 +1,11 @@
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 var element = React.createElement("h1", //type
 {
   className: "title",
@@ -109,7 +117,11 @@ var Clock1 = function Clock1(props) {
 };
 
 //passing new Date() object to data attributes
-ReactDOM.render(React.createElement(Clock1, { date: new Date() }), document.getElementById("root3"));
+// ReactDOM.render(
+//   <Clock1 date={new Date()} />,
+
+//   document.getElementById("root3")
+// );
 
 //adding time by setInterval
 var Clock2 = function Clock2(props) {
@@ -129,3 +141,58 @@ var Clock2 = function Clock2(props) {
 window.setInterval(function () {
   ReactDOM.render(React.createElement(Clock2, { date: new Date() }), document.getElementById("root"));
 }, 1000);
+
+// ES6 objct constructor and extends : extends allows 1 object constructor to COPY over the properties and methods of another object constructor
+//ES6 Class extends React.Component to inherit React Class component properties
+//render method that returns an output
+// new date() value is moved to state property object of Clock
+//clock custom component inheritis all properties and methods from react.component
+
+//state: property to store value that changes
+//we can multiply properties to state
+
+var Clock = function (_React$Component) {
+  _inherits(Clock, _React$Component);
+
+  function Clock(props) {
+    _classCallCheck(this, Clock);
+
+    var _this = _possibleConstructorReturn(this, (Clock.__proto__ || Object.getPrototypeOf(Clock)).call(this, props));
+
+    _this.state = {
+      date: new Date(),
+      location: "New York"
+    }; // this is the component state property object
+    return _this;
+  }
+
+  //{location, date} replaces this.state
+
+
+  _createClass(Clock, [{
+    key: "render",
+    value: function render() {
+      var _state = this.state,
+          location = _state.location,
+          date = _state.date;
+
+      return React.createElement(
+        "div",
+        null,
+        React.createElement(
+          "h2",
+          null,
+          "The time now is ",
+          date.toLocaleTimeString(),
+          " in ",
+          location,
+          "."
+        )
+      );
+    }
+  }]);
+
+  return Clock;
+}(React.Component);
+
+ReactDOM.render(React.createElement(Clock, null), document.getElementById("root7"));
