@@ -236,10 +236,77 @@ ReactDOM.render(<Clock />, document.getElementById("root7"));
 
 - A React component can exist in one of three states:
 
-**1. Mounting** : component is not yet mounted into the DOM,  the constructor method is invoked to execute any code we have written in it, usually for initilizing the state. Then the render method is run to get an output from the component.
+#### **1. Mounting** : component is not yet mounted into the DOM,  the constructor method is invoked to execute any code we have written in it, usually for initilizing the state. Then the render method is run to get an output from the component.
 
-**2. Live(and updating)**: after the component is injected into the DOM "mounted", React will watch for any changes in the component, and update the component in the DOM to its newest state when changes happen.
+#### **2. Live(and updating)**: after the component is injected into the DOM "mounted", React will watch for any changes in the component, and update the component in the DOM to its newest state when changes happen.
 
-**3. Unmounting**: nothing much really happens in this state, the component is about to be removed from the DOM. A scenario of when a React component unmounts could be if we created a notification component, and the user dismisses a notification.
+#### **3. Unmounting**: nothing much really happens in this state, the component is about to be removed from the DOM. A scenario of when a React component unmounts could be if we created a notification component, and the user dismisses a notification.
 
 ![extend](../img/reactlifecycle.png)
+
+### Doing things between state change ( lifecycle methods)
+
+#### There are 2 methods that REACT has so we can use after a component has mounted and just before a component unmounts ( in case we need to do any cleanups)
+
+    - componentDidMount: this is run right after a component has mounted and goes to the live state
+    - componentWillUnmount: this is run right before a component unmounts. A component unmounts when it is no longer needed on the page, this could be due to a page change, the user closes the browser tab or window, or the component is dismissed by the user, such as a notification component.
+
+![React methods forlife cycle](../img/method.png)
+
+## Things to know about state
+
+### You shall not modify state directly
+
+- The only way to update state is via the setState() method
+
+```
+// Wrong, will not work, DOM output won't update
+this.state.date = new Date();
+
+```
+
+```
+// Correct
+this.setState({ date: new Date() });
+```
+
+### Initialize state in constructor
+
+- We should initialize this.state in the constructor method only.
+
+```
+constructor (props) {
+  super(props);
+  this.state = { date: new Date() };
+}
+```
+
+### State can be passed down
+
+
+```
+const DateDisplay = (props) => {
+  return <h2>The time now is {props.date.toLocaleTimeString()}.</h2>
+}
+
+render () {
+  return (
+    <div>
+      <DateDisplay date={this.state.date} />
+    </div>
+  )
+}
+```
+
+- DateDisplay wouldn't know whether the date prop came from a state or was manually typed. It doesn't care either, as long as the date value is valid.
+
+### Component instances and their states are independent
+
+
+## Event Handling
+
+#### Events in React JSX is very similar to HTML. 2 syntax differences:
+ 
+- JSX event names are in camelCase, rather than lowercase.
+
+- In JSX, a function value is passed to the event handler attribute, rather than a string.

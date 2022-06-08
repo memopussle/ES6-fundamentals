@@ -154,6 +154,7 @@ window.setInterval(function () {
 var Clock = function (_React$Component) {
   _inherits(Clock, _React$Component);
 
+  //mounted state
   function Clock(props) {
     _classCallCheck(this, Clock);
 
@@ -166,10 +167,42 @@ var Clock = function (_React$Component) {
     return _this;
   }
 
-  //{location, date} replaces this.state
+  //method between mounted and live
 
 
   _createClass(Clock, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      //execute every second
+      this.timer = setInterval(function () {
+        return _this2.updateTime();
+      }, 1000);
+    }
+
+    //run thismethod befoe component is removed from DOM
+
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      //clear the interval right before Clock component is removed from DOM
+      clearInterval(this.timer);
+    }
+
+    //this.setState is a React.Component method that lets us update the component state property
+
+  }, {
+    key: "updateTime",
+    value: function updateTime() {
+      this.setState({
+        date: new Date()
+      });
+    }
+
+    //{location, date} replaces this.state
+
+  }, {
     key: "render",
     value: function render() {
       var _state = this.state,
@@ -196,3 +229,51 @@ var Clock = function (_React$Component) {
 }(React.Component);
 
 ReactDOM.render(React.createElement(Clock, null), document.getElementById("root7"));
+
+//Life cycle of a component
+// we have 2 run 2 methods in between mount and unmount for updating clock:
+//1. componentDidMount: set up an interva timer to update the value in the component state
+//2. componentWillUnmount: clear the interval timer and stop it from running
+
+
+//React counter Component
+//1. defining a class componeny and initiate the state with a count property set to 0
+
+var Counter = function (_React$Component2) {
+  _inherits(Counter, _React$Component2);
+
+  function Counter(props) {
+    _classCallCheck(this, Counter);
+
+    //counter value starts at 0
+    var _this3 = _possibleConstructorReturn(this, (Counter.__proto__ || Object.getPrototypeOf(Counter)).call(this, props));
+
+    _this3.state = { count: 0 };
+    return _this3;
+  }
+
+  _createClass(Counter, [{
+    key: "render",
+    value: function render() {
+      return React.createElement(
+        "div",
+        null,
+        React.createElement(
+          "h2",
+          null,
+          "Couunt ",
+          this.state.count
+        ),
+        React.createElement(
+          "button",
+          null,
+          "+1"
+        )
+      );
+    }
+  }]);
+
+  return Counter;
+}(React.Component);
+
+ReactDOM.render(React.createElement(Counter, null), document.getElementById("root8"));

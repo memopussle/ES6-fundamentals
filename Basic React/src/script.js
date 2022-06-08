@@ -137,13 +137,33 @@ window.setInterval(() => {
 //state: property to store value that changes
 //we can multiply properties to state
 class Clock extends React.Component {
+  //mounted state
   constructor(props) {
-
     super(props);
     this.state = {
       date: new Date(),
       location: "New York",
     }; // this is the component state property object
+  }
+
+  //method between mounted and live
+  componentDidMount() {
+    //execute every second
+    this.timer = setInterval(() => this.updateTime(), 1000);
+  }
+
+  //run thismethod befoe component is removed from DOM
+  componentWillUnmount() {
+    //clear the interval right before Clock component is removed from DOM
+    clearInterval(this.timer);
+  }
+
+
+  //this.setState is a React.Component method that lets us update the component state property
+  updateTime() {
+    this.setState({
+      date: new Date(),
+    });
   }
 
   //{location, date} replaces this.state
@@ -160,3 +180,38 @@ class Clock extends React.Component {
 }
 
 ReactDOM.render(<Clock />, document.getElementById("root7"));
+
+
+//Life cycle of a component
+// we have 2 run 2 methods in between mount and unmount for updating clock:
+//1. componentDidMount: set up an interva timer to update the value in the component state
+//2. componentWillUnmount: clear the interval timer and stop it from running
+
+
+
+//React counter Component
+//1. defining a class componeny and initiate the state with a count property set to 0
+class Counter extends React.Component {
+  constructor(props) {
+    super(props);
+
+    //counter value starts at 0
+    this.state = { count: 0 };
+  }
+
+  render() {
+    return (
+      <div>
+        <h2>Couunt {this.state.count}</h2>
+        <button>+1</button>
+      </div>
+      
+    );
+  }
+}
+
+ReactDOM.render(
+  <Counter />,
+
+  document.getElementById("root8")
+);
