@@ -245,29 +245,59 @@ var Counter = function (_React$Component2) {
   function Counter(props) {
     _classCallCheck(this, Counter);
 
-    //counter value starts at 0
+    // count value starts at 0
+
     var _this3 = _possibleConstructorReturn(this, (Counter.__proto__ || Object.getPrototypeOf(Counter)).call(this, props));
 
     _this3.state = { count: 0 };
+    // This binding ensures `this` refers to the class object in the callback
+    _this3.addCount = _this3.addCount.bind(_this3);
     return _this3;
   }
 
   _createClass(Counter, [{
+    key: "addCount",
+    value: function addCount(amount) {
+      // add 1 to this.state.count
+
+      this.setState({
+        count: this.state.count + amount
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this4 = this;
+
       return React.createElement(
         "div",
         null,
         React.createElement(
           "h2",
           null,
-          "Couunt ",
+          "Count ",
           this.state.count
         ),
         React.createElement(
           "button",
-          null,
+          { onClick: function onClick() {
+              return _this4.addCount(1);
+            } },
           "+1"
+        ),
+        React.createElement(
+          "button",
+          { onClick: function onClick() {
+              return _this4.addCount(2);
+            } },
+          "+2"
+        ),
+        React.createElement(
+          "button",
+          { onClick: function onClick() {
+              return _this4.addCount(3);
+            } },
+          "+3"
         )
       );
     }
@@ -276,4 +306,21 @@ var Counter = function (_React$Component2) {
   return Counter;
 }(React.Component);
 
-ReactDOM.render(React.createElement(Counter, null), document.getElementById("root8"));
+ReactDOM.render(React.createElement(Counter, null), document.getElementById("root7"));
+
+//Prevent even Default: prevent the defaut behavior of the browser
+var Link = function Link() {
+  var handleClick = function handleClick(e) {
+    e.preventDefault();
+
+    console.log("Link clicked.");
+  };
+
+  return React.createElement(
+    "a",
+    { href: "altcademy.com", onClick: handleClick },
+    "Click me"
+  );
+};
+
+ReactDOM.render(React.createElement(Link, null), document.getElementById("root8"));

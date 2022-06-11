@@ -173,6 +173,10 @@ console.log(tom.age);
 ### ES6 class inheritance
 - Inheritance allows one object to constructor to copy over the properties and methods of another object constructor
 
+- class components were the only way to track state and lifecycle on a React component.
+
+- extends React.component : creates an inheritance to React.Component, and give your components access to React.Component properties and methods
+
 ```
   class Student extends Person {
     constructor(name, age, subject) {
@@ -190,19 +194,18 @@ mary.changeAge(22);
 mary.changeSubject('Astrophysics');
 ```
 
-- ES6 and ES5 do the same thing, but ES6 reduces the complexity
 
 ![extend](../img/extends.png)
 
 ### State of class component
 
-- React Class components use a specific object property called state to act as a storage system for each component instance. This is like using a variable to store values, except it is contained within an object and won't pollute the global scope.
 
-- For example below, clock custom component inherits all properties and mthods from React.component
+- A state is an object that stores the value of properties belonging to a component that could change over a period of time
 
-- A React Class component needs to have a render method that returns an output
 
-- props now is an Object property in render()
+![state explaination](../img/state.png)
+
+![state vs props](../img/difference.png)
 
 ```
 class Clock extends React.Component {
@@ -229,6 +232,9 @@ class Clock extends React.Component {
 
 ReactDOM.render(<Clock />, document.getElementById("root7"));
 ```
+
+### setState()
+
 
 ## React component lifecycle
 

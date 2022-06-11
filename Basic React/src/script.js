@@ -195,23 +195,57 @@ class Counter extends React.Component {
   constructor(props) {
     super(props);
 
-    //counter value starts at 0
+    // count value starts at 0
+
     this.state = { count: 0 };
+    // This binding ensures `this` refers to the class object in the callback
+    this.addCount = this.addCount.bind(this);
+  }
+  addCount(amount) {
+    // add 1 to this.state.count
+
+    this.setState({
+      count: this.state.count + amount,
+    });
   }
 
   render() {
     return (
       <div>
-        <h2>Couunt {this.state.count}</h2>
-        <button>+1</button>
+        <h2>Count {this.state.count}</h2>
+
+        <button onClick={() => this.addCount(1)}>+1</button>
+        <button onClick={() => this.addCount(2)}>+2</button>
+        <button onClick={() => this.addCount(3)}>+3</button>
       </div>
-      
     );
   }
 }
 
 ReactDOM.render(
   <Counter />,
+
+  document.getElementById("root7")
+);
+
+
+//Prevent even Default: prevent the defaut behavior of the browser
+const Link = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
+
+    console.log("Link clicked.");
+  };
+
+  return (
+    <a href="altcademy.com" onClick={handleClick}>
+      Click me
+    </a>
+  );
+};
+
+ReactDOM.render(
+  <Link />,
 
   document.getElementById("root8")
 );
